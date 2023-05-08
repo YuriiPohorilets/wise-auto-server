@@ -58,7 +58,7 @@ const noticeSchema = new Schema(
     },
     vinCode: {
       type: String,
-      required: [true, 'VIN is required'],
+      default: null,
     },
     drivetrain: {
       type: String,
