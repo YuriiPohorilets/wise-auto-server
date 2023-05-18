@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
-// const { auth: ctrl } = require('../../controllers');
+const { auth: ctrl } = require('../../controllers');
 
-router.post('/signup', (req, res) => {
-  console.log('Signup route');
-});
+router.post('/signup', ctrl.register);
 
 router.post('/login', (req, res) => {
   console.log('Login route');
