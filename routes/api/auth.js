@@ -4,9 +4,7 @@ const { auth: ctrl } = require('../../controllers');
 
 router.post('/signup', ctrl.register);
 
-router.post('/login', (req, res) => {
-  console.log('Login route');
-});
+router.post('/login', ctrl.login);
 
 router.get('/logout', (req, res) => {
   console.log('Logout route');

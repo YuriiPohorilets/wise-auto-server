@@ -14,7 +14,7 @@ const joiNoticeSchema = Joi.object({
   year: Joi.date().format(['YYYY']).utc().allow(null, '').required(),
   type: Joi.string().valid('new', 'used', 'all').required(),
   location: Joi.string().min(3).max(64).required(),
-  kilometrage: Joi.number().positive().allow(0).max().required(),
+  kilometrage: Joi.number().positive().allow(0).required(),
   transmission: Joi.string()
     .valid('manual', 'automatic', 'tiptronic', 'robotic', 'variable')
     .required(),

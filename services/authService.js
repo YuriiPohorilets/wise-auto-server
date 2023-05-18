@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
-const createToken = async _id => {
+const createToken = async ({ _id }) => {
   const { SECRET_KEY } = process.env;
   const payload = { id: _id };
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '12h' });
@@ -15,6 +15,10 @@ const findUserByEmail = async email => {
   return user;
 };
 
+const loginUser = async ({ _id }, token) => {
+  await User.findByIdAndUpdate(_id, { token });
+};
+
 const registerNewUser = async ({ email, password, name, city, phone }) => {
   const newUser = new User({ email, password, name, city, phone });
   newUser.setPassword(password);
@@ -24,7 +28,8 @@ const registerNewUser = async ({ email, password, name, city, phone }) => {
 };
 
 module.exports = {
-  findUserByEmail,
-  registerNewUser,
   createToken,
+  findUserByEmail,
+  loginUser,
+  registerNewUser,
 };

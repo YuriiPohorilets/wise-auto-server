@@ -16,8 +16,8 @@ const register = asyncHandler(async (req, res) => {
     return res.status(409).json({ message: `User with ${email} already exist ` });
   }
 
-  const { _id } = await registerNewUser({ email, password, name, city, phone });
-  const token = await createToken(_id);
+  const newUser = await registerNewUser({ email, password, name, city, phone });
+  const token = await createToken(newUser);
 
   res.status(201).json({
     status: 'success',
